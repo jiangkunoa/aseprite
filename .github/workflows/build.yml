@@ -1,5 +1,5 @@
 name: build
-on: [push, pull_request, workflow_dispatch]
+on: [push, pull_request]
 jobs:
   build:
     runs-on: ${{ matrix.os }}
@@ -113,4 +113,12 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: aseprite-binaries
-        path: build/bin/
+        path: build/bin/aseprite.exe
+    - name: Debug Output
+      shell: bash
+      run: |
+        echo "Files in build/bin:"
+        ls -l build/bin/
+        echo "All files in build directory:"
+        find build -type f
+
